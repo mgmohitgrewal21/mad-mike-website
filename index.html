@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M_I_MAD — MAD MIKE | Built Atom by Atom · madme.org</title>
+<meta name="description" content="R U MAD? M_I_MAD. The MAD MIKE character series — money mindset, desi diaspora life in Canada, street style, toxic-trait humour. Built atom by atom. First drop: MAD MIKE Clean Sheets — join the waitlist.">
+<meta property="og:title" content="M_I_MAD — MAD MIKE · madme.org">
+<meta property="og:description" content="R U MAD? Built atom by atom. Series, drops, and the standard. First drop loading: MAD MIKE Clean Sheets.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://madme.org">
+<meta name="theme-color" content="#0a0a0b">
+<!-- GA4: property madme.org (558969378) — paste the measurement ID here when wiring analytics -->
+<link rel="icon" href="avatar.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;800&family=Bangers&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --bg2:#101013;
+    --panel:#151519;
+    --line:#26262c;
+    --gold:#d4af37;
+    --gold2:#f0d98c;
+    --gold-deep:#8a6d1f;
+    --ink:#f5f0e4;
+    --muted:#a39c8d;
+    --red:#ff4757;
+    --radius:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold);color:#141005;}
+  .display{font-family:"Archivo Black","Arial Black",sans-serif;text-transform:uppercase;line-height:.95;letter-spacing:.01em;}
+  .toon{font-family:"Bangers","Archivo Black",cursive;letter-spacing:.04em;}
+  .gold{color:var(--gold);}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- ambient background ---------- */
+  .bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(120% 60% at 50% -10%, rgba(212,175,55,.13), transparent 60%),
+      radial-gradient(80% 45% at 85% 40%, rgba(212,175,55,.05), transparent 60%),
+      radial-gradient(90% 50% at 50% 115%, rgba(212,175,55,.07), transparent 60%);
+  }
+  .bg-dots{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:radial-gradient(rgba(212,175,55,.10) 1.2px, transparent 1.3px);
+    background-size:26px 26px;
+    -webkit-mask-image:radial-gradient(70% 55% at 50% 30%, #000 30%, transparent 100%);
+            mask-image:radial-gradient(70% 55% at 50% 30%, #000 30%, transparent 100%);
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    background:rgba(10,10,11,.72);border-bottom:1px solid rgba(212,175,55,.18);
+  }
+  .nav-in{max-width:1120px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);}
+  .brand img{width:38px;height:38px;border-radius:50%;border:2px solid var(--gold);object-fit:cover;box-shadow:3px 3px 0 #000;}
+  .brand .b-name{font-family:"Archivo Black",sans-serif;font-size:17px;letter-spacing:.03em;}
+  .brand .b-name span{color:var(--gold);}
+  .nav-links{display:flex;gap:20px;align-items:center;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;}
+  .nav-links a:hover{color:var(--gold2);}
+  .nav-cta{
+    color:#141005 !important;background:linear-gradient(180deg,var(--gold2),var(--gold));
+    padding:9px 16px;border-radius:999px;box-shadow:3px 3px 0 #000;
+  }
+  @media (max-width:640px){ .nav-links a:not(.nav-cta){display:none;} }
+
+  /* ---------- marquee ticker ---------- */
+  .ticker{
+    position:relative;z-index:3;overflow:hidden;white-space:nowrap;
+    background:linear-gradient(180deg,var(--gold2),var(--gold));
+    border-top:3px solid #000;border-bottom:3px solid #000;
+    transform:rotate(-1.1deg) scale(1.02);
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+  }
+  .ticker-track{display:inline-flex;padding:9px 0;animation:tick 26s linear infinite;will-change:transform;}
+  .ticker span{
+    font-family:"Archivo Black",sans-serif;font-size:15px;color:#141005;letter-spacing:.06em;
+    padding:0 14px;text-transform:uppercase;
+  }
+  .ticker .dot{color:#141005;opacity:.55;}
+  @keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- hero ---------- */
+  #hero{position:relative;padding:132px 0 30px;text-align:center;overflow:hidden;}
+  #gl{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+  .hero-shade{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(60% 55% at 50% 42%, transparent 30%, rgba(10,10,11,.55) 78%, var(--bg) 100%);}
+  .hero-in{position:relative;z-index:2;}
+  .eyebrow{
+    display:inline-block;font-size:11px;font-weight:800;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--gold2);border:1px solid rgba(212,175,55,.45);padding:7px 14px 7px 18px;border-radius:999px;
+    background:rgba(10,10,11,.55);
+  }
+  .avatar-stage{position:relative;width:min(340px,78vw);margin:30px auto 0;perspective:900px;}
+  .avatar-ring{
+    position:absolute;inset:-16px;border-radius:50%;
+    background:conic-gradient(from 0deg, transparent 0 40%, rgba(212,175,55,.85) 50%, transparent 60% 100%);
+    animation:spin 7s linear infinite;filter:blur(.4px);
+    -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+            mask:radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .avatar-card{
+    position:relative;border-radius:50%;overflow:hidden;aspect-ratio:1/1;
+    border:4px solid var(--gold);
+    box-shadow:8px 10px 0 #000, 0 34px 90px rgba(0,0,0,.8), 0 0 90px rgba(212,175,55,.22);
+    transform-style:preserve-3d;will-change:transform;background:#111;
+  }
+  .avatar-card img{display:block;width:100%;height:100%;object-fit:cover;}
+  .burst{
+    position:absolute;font-family:"Bangers",cursive;color:#141005;background:var(--gold2);
+    border:3px solid #000;border-radius:14px;padding:6px 14px;font-size:clamp(17px,4.6vw,22px);
+    box-shadow:4px 4px 0 #000;z-index:3;white-space:nowrap;
+  }
+  .burst-1{top:6%;left:-16%;transform:rotate(-8deg);}
+  .burst-2{bottom:9%;right:-15%;transform:rotate(6deg);background:var(--ink);}
+  @media (max-width:520px){ .burst-1{left:-4%;} .burst-2{right:-4%;} }
+  h1.hero-title{font-size:clamp(58px,13.5vw,124px);margin-top:34px;text-shadow:6px 6px 0 #000, 0 24px 70px rgba(0,0,0,.85);}
+  h1.hero-title .thin{display:block;font-size:.30em;letter-spacing:.36em;color:var(--gold);font-weight:400;margin-bottom:14px;text-shadow:3px 3px 0 #000;}
+  .rumad{margin-top:26px;display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .rumad-q{font-family:"Bangers",cursive;font-size:clamp(30px,7vw,44px);color:var(--ink);letter-spacing:.05em;text-shadow:3px 3px 0 #000;}
+  .rumad-q .q{color:var(--gold2);}
+  .mad-btn{
+    font-family:"Archivo Black",sans-serif;font-size:16px;letter-spacing:.08em;text-transform:uppercase;
+    color:#141005;background:linear-gradient(180deg,var(--gold2),var(--gold));
+    border:3px solid #000;border-radius:999px;padding:15px 32px;cursor:pointer;
+    box-shadow:5px 5px 0 #000;transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .mad-btn:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 #000;}
+  .mad-btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 #000;}
+  .mad-level{font-size:12px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);min-height:16px;}
+  .mad-level b{color:var(--gold2);}
+  .tagline{margin-top:22px;font-size:clamp(19px,4.6vw,25px);font-weight:700;line-height:1.3;}
+  .tagline em{font-style:normal;color:var(--gold2);}
+  .trait{margin:16px auto 0;max-width:520px;color:var(--muted);font-size:15.5px;font-style:italic;}
+  .trait strong{color:var(--ink);font-style:normal;}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px;}
+  .btn{
+    display:inline-block;text-decoration:none;cursor:pointer;border:0;
+    font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    padding:15px 26px;border-radius:999px;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-gold{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#141005;border:3px solid #000;box-shadow:5px 5px 0 #000;}
+  .btn-gold:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 #000;}
+  .btn-ghost{background:rgba(10,10,11,.6);color:var(--ink);border:1px solid var(--line);}
+  .btn-ghost:hover{border-color:rgba(212,175,55,.6);}
+  .scroll-hint{margin:38px auto 4px;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.34em;text-transform:uppercase;animation:bob 2.2s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+  /* ---------- sections ---------- */
+  section{padding:88px 0 10px;position:relative;}
+  .kicker{font-size:11px;font-weight:800;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);text-align:center;}
+  h2.sec{font-size:clamp(36px,7.5vw,58px);text-align:center;margin-top:12px;text-shadow:4px 4px 0 #000;}
+  .lede{text-align:center;color:var(--muted);margin:16px auto 0;max-width:560px;font-size:16.5px;}
+  .rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5;margin:64px auto 0;max-width:1120px;}
+
+  /* ---------- series cards ---------- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:42px;}
+  .card{
+    position:relative;background:linear-gradient(180deg,var(--panel),var(--bg2));
+    border:2px solid var(--line);border-radius:var(--radius);padding:28px 24px 24px;
+    box-shadow:6px 6px 0 #000;overflow:hidden;
+    transition:transform .25s ease, border-color .25s ease;
+    transform-style:preserve-3d;will-change:transform;
+  }
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+  .card:hover{border-color:rgba(212,175,55,.65);}
+  .card .emoji{font-size:36px;line-height:1;display:block;filter:drop-shadow(3px 3px 0 #000);}
+  .card h3{font-size:19px;letter-spacing:.03em;text-transform:uppercase;margin-top:16px;}
+  .card h3 span{color:var(--gold);display:block;font-size:12px;letter-spacing:.3em;margin-bottom:5px;}
+  .card p{color:var(--muted);font-size:14.5px;margin-top:8px;}
+  .card .tag{
+    display:inline-block;margin-top:16px;font-family:"Bangers",cursive;font-size:15px;letter-spacing:.06em;
+    color:var(--gold2);border:1.5px solid rgba(212,175,55,.5);border-radius:999px;padding:3px 12px;transform:rotate(-2deg);
+  }
+
+  /* ---------- counters ---------- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:46px;}
+  .stat{
+    text-align:center;background:rgba(255,255,255,.02);border:1px solid var(--line);
+    border-radius:var(--radius);padding:26px 14px 20px;
+  }
+  .stat .num{font-family:"Archivo Black",sans-serif;font-size:clamp(38px,6vw,52px);color:var(--gold2);text-shadow:3px 3px 0 #000;}
+  .stat .lbl{margin-top:8px;font-size:11.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
+
+  /* ---------- the standard / differentiator ---------- */
+  .versus{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:42px;}
+  @media (max-width:720px){ .versus{grid-template-columns:1fr;} }
+  .vs-col{border-radius:var(--radius);padding:30px 28px;border:2px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--bg2));}
+  .vs-col.them{opacity:.82;}
+  .vs-col.us{border-color:var(--gold);box-shadow:7px 7px 0 #000, 0 0 60px rgba(212,175,55,.10);}
+  .vs-col h3{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:19px;letter-spacing:.04em;}
+  .vs-col.them h3{color:var(--muted);}
+  .vs-col.us h3{color:var(--gold2);}
+  .vs-col ul{list-style:none;margin-top:16px;display:grid;gap:11px;}
+  .vs-col li{font-size:15px;color:var(--muted);padding-left:28px;position:relative;}
+  .vs-col li::before{position:absolute;left:0;top:0;font-weight:900;}
+  .vs-col.them li::before{content:"✕";color:var(--red);}
+  .vs-col.us li{color:var(--ink);}
+  .vs-col.us li::before{content:"✓";color:var(--gold);}
+  .vs-note{text-align:center;margin-top:26px;font-family:"Bangers",cursive;font-size:clamp(20px,4.5vw,27px);color:var(--gold2);letter-spacing:.05em;transform:rotate(-1deg);}
+
+  /* ---------- first drop / waitlist ---------- */
+  .drop{
+    background:
+      radial-gradient(120% 120% at 50% 0%, rgba(212,175,55,.13), transparent 55%),
+      linear-gradient(180deg,#17171c,#0e0e11);
+    border:2px solid rgba(212,175,55,.5);border-radius:24px;padding:38px 26px 30px;text-align:center;
+    box-shadow:8px 8px 0 #000, 0 24px 60px rgba(0,0,0,.6);max-width:640px;margin:42px auto 0;
+  }
+  .drop .status{
+    display:inline-block;font-size:11px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;
+    color:#141005;background:linear-gradient(180deg,var(--gold2),var(--gold));
+    padding:7px 15px;border-radius:999px;border:2px solid #000;box-shadow:3px 3px 0 #000;
+    animation:pulseGlow 2.4s ease-in-out infinite;
+  }
+  @keyframes pulseGlow{0%,100%{box-shadow:3px 3px 0 #000, 0 0 0 rgba(212,175,55,0);}50%{box-shadow:3px 3px 0 #000, 0 0 26px rgba(212,175,55,.55);}}
+  .drop h2{font-size:clamp(36px,8vw,54px);margin-top:20px;text-shadow:4px 4px 0 #000;}
+  .drop form{margin-top:24px;display:flex;flex-direction:column;gap:11px;}
+  .drop input[type="email"]{
+    width:100%;padding:16px 18px;border-radius:12px;border:1px solid var(--line);
+    background:#0b0b0d;color:var(--ink);font-size:16px;outline:none;
+  }
+  .drop input[type="email"]:focus{border-color:var(--gold);}
+  .drop input[type="email"]::placeholder{color:#6f6a5f;}
+  .drop .btn{width:100%;}
+  .fineprint{font-size:12px;color:#77705f;margin-top:13px;}
+  .sent{display:none;margin-top:18px;color:var(--gold2);font-weight:700;font-size:15px;}
+
+  /* ---------- the roof ---------- */
+  .roof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:42px;}
+  .roof-card{
+    display:block;text-decoration:none;color:var(--ink);
+    background:linear-gradient(180deg,var(--panel),var(--bg2));
+    border:2px solid var(--line);border-radius:var(--radius);padding:24px 22px;
+    box-shadow:5px 5px 0 #000;transition:transform .2s ease, border-color .2s ease;
+  }
+  a.roof-card:hover{transform:translate(-2px,-2px);border-color:rgba(212,175,55,.65);}
+  .roof-card .slot{font-size:10.5px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);}
+  .roof-card h3{font-size:19px;margin-top:9px;text-transform:uppercase;letter-spacing:.03em;}
+  .roof-card h3 b{color:var(--gold);}
+  .roof-card p{color:var(--muted);font-size:13.5px;margin-top:6px;}
+  .roof-card .go{margin-top:14px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);}
+  .roof-card.loading{opacity:.62;border-style:dashed;box-shadow:none;}
+  .roof-card .chip{
+    display:inline-block;margin-top:12px;font-family:"Bangers",cursive;font-size:14.5px;letter-spacing:.07em;
+    color:#141005;background:var(--muted);border:2px solid #000;border-radius:999px;padding:2px 12px;transform:rotate(-2deg);
+  }
+
+  /* ---------- footer ---------- */
+  footer{padding:74px 0 46px;text-align:center;}
+  footer .f-brand{font-family:"Archivo Black",sans-serif;font-size:22px;}
+  footer .f-brand span{color:var(--gold);}
+  footer p{color:#6f6a5f;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;margin-top:10px;}
+  footer a{color:var(--gold2);text-decoration:none;font-weight:800;}
+  footer a:hover{text-decoration:underline;}
+
+  /* ---------- reveal defaults (JS/GSAP enhances) ---------- */
+  [data-reveal]{opacity:1;}
+  .js-anim [data-reveal]{opacity:0;}
+
+  /* ---------- reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important;}
+    [data-reveal]{opacity:1 !important;transform:none !important;}
+    .ticker-track{animation:none;}
+  }
+</style>
+<!-- Microsoft Clarity — project "MAD MIKE" (owner mike@madme.org), installed Oct 14, 2026 -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yxi2hezqbv");
+</script>
+</head>
+<body>
+
+<div class="bg-fx"></div>
+<div class="bg-dots"></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#hero">
+      <img src="avatar.webp" alt="M_I_MAD avatar">
+      <span class="b-name">M_I_<span>MAD</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#series">The Series</a>
+      <a href="#standard">The Standard</a>
+      <a href="#roof">The Roof</a>
+      <a class="nav-cta" href="#drop">First Drop</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header id="hero">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div class="hero-shade"></div>
+  <div class="hero-in wrap">
+    <span class="eyebrow" data-reveal>madme.org &middot; est. atom by atom</span>
+
+    <div class="avatar-stage" data-reveal>
+      <div class="avatar-ring" aria-hidden="true"></div>
+      <div class="avatar-card" id="avatarCard">
+        <img src="avatar.webp" alt="M_I_MAD — MAD MIKE, yellow-lens sunglasses, old-money curls" width="800" height="800">
+      </div>
+      <span class="burst burst-1 toon" aria-hidden="true">100% Original</span>
+      <span class="burst burst-2 toon" aria-hidden="true">Zero Handouts!</span>
+    </div>
+
+    <h1 class="display hero-title" data-reveal><span class="thin">The one &amp; only</span>M_I_MAD</h1>
+
+    <div class="rumad" data-reveal>
+      <p class="rumad-q">R U <span class="q">MAD?</span></p>
+      <button class="mad-btn" id="madBtn" type="button">Tap if you&rsquo;re mad</button>
+      <p class="mad-level" id="madLevel">Mad-o-meter: <b>warming up&hellip;</b></p>
+    </div>
+
+    <p class="tagline" data-reveal>Built <em>atom by atom.</em> No shortcuts. No handouts.</p>
+    <p class="trait" data-reveal>&ldquo;My toxic trait is spending money because <strong>I know I&rsquo;ll make more.</strong> I don&rsquo;t know where it&rsquo;ll come from — but it will.&rdquo;</p>
+
+    <div class="cta-row" data-reveal>
+      <a class="btn btn-gold" href="https://www.youtube.com/channel/UCl8RS4qi9qhTy9_v6O3Sxuw" target="_blank" rel="noopener">▶ Watch on YouTube</a>
+      <a class="btn btn-ghost" href="#drop">Join the First Drop</a>
+    </div>
+
+    <p class="scroll-hint" aria-hidden="true">Scroll &darr;</p>
+  </div>
+</header>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack">
+    <span>R U MAD?</span><span class="dot">•</span><span>M_I_MAD</span><span class="dot">•</span><span>Built Atom by Atom</span><span class="dot">•</span><span>No Shortcuts</span><span class="dot">•</span><span>No Handouts</span><span class="dot">•</span><span>First Drop Loading</span><span class="dot">•</span><span>madme.org</span><span class="dot">•</span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ================= THE SERIES ================= -->
+  <section id="series">
+    <p class="kicker" data-reveal>The Series</p>
+    <h2 class="display sec" data-reveal>One Character.<br>Every Arena.</h2>
+    <p class="lede" data-reveal>A character-led series out of Surrey, BC — the grind, the money, the streets, the glow-up. New episodes on YouTube &amp; Instagram. No fake-guru nonsense, just the real build.</p>
+
+    <div class="cards">
+      <article class="card" data-tilt data-reveal>
+        <span class="emoji" aria-hidden="true">💰</span>
+        <h3><span>Arena 01</span>Money Mindset</h3>
+        <p>Hustle culture, decoded. The spending, the earning, the &ldquo;I&rsquo;ll make more&rdquo; math — played out loud, wins and Ls both.</p>
+        <span class="tag">risk it, then earn it back</span>
+      </article>
+      <article class="card" data-tilt data-reveal>
+        <span class="emoji" aria-hidden="true">🍁</span>
+        <h3><span>Arena 02</span>Desi Diaspora Life</h3>
+        <p>Punjabi roots, Canadian streets. Family calls home, Surrey winters, and building a life 11,000 km from where it started.</p>
+        <span class="tag">surrey &rarr; the world</span>
+      </article>
+      <article class="card" data-tilt data-reveal>
+        <span class="emoji" aria-hidden="true">🏍️</span>
+        <h3><span>Arena 03</span>Street Style &middot; Cars &amp; Bikes</h3>
+        <p>Night drives, clean fits, loud machines. The convoy aesthetic — varsity jackets, yellow lenses, and pavement after dark.</p>
+        <span class="tag">roll deep, look sharp</span>
+      </article>
+      <article class="card" data-tilt data-reveal>
+        <span class="emoji" aria-hidden="true">😈</span>
+        <h3><span>Arena 04</span>Toxic-Trait Humour</h3>
+        <p>The confessions segment. Spending like the money&rsquo;s already made — because in his head, it is. R U MAD?</p>
+        <span class="tag">m_i_mad, obviously</span>
+      </article>
+    </div>
+
+    <div class="stats">
+      <div class="stat" data-reveal>
+        <div class="num"><span data-count="4">0</span></div>
+        <div class="lbl">Series Arenas</div>
+      </div>
+      <div class="stat" data-reveal>
+        <div class="num"><span data-count="10">0</span>+</div>
+        <div class="lbl">AI Agents on the Crew</div>
+      </div>
+      <div class="stat" data-reveal>
+        <div class="num"><span data-count="100">0</span>%</div>
+        <div class="lbl">Built Atom by Atom</div>
+      </div>
+      <div class="stat" data-reveal>
+        <div class="num"><span data-count="0">0</span></div>
+        <div class="lbl">Shortcuts Taken</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ================= THE STANDARD ================= -->
+  <section id="standard">
+    <p class="kicker" data-reveal>The Standard</p>
+    <h2 class="display sec" data-reveal>Which Competitors<br>Didn&rsquo;t Do</h2>
+    <p class="lede" data-reveal>Everybody sells the dream. Here, the build itself is the content — a live AI fleet writes, renders and designs in the open, and a human approves every single frame before it ships.</p>
+
+    <div class="versus">
+      <div class="vs-col them" data-reveal>
+        <h3>The Other Guys</h3>
+        <ul>
+          <li>Sold the course, hid the work</li>
+          <li>Fake screenshots &amp; rented flexes</li>
+          <li>Ghost teams, zero receipts</li>
+          <li>Hype today, gone tomorrow</li>
+        </ul>
+      </div>
+      <div class="vs-col us" data-reveal>
+        <h3>The MAD MIKE Way</h3>
+        <ul>
+          <li>The build IS the show — atom by atom, live</li>
+          <li>Real drafts, real fleet, real numbers</li>
+          <li>Thumbnails designed &amp; scored by a 4-agent team</li>
+          <li>Nothing posts without Mike&rsquo;s tap. Ever.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="vs-note" data-reveal>They sold the course. We sell the thing. 👊</p>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ================= FIRST DROP ================= -->
+  <section id="drop">
+    <p class="kicker" data-reveal>The First Product</p>
+    <h2 class="display sec" data-reveal>Small Runs.<br>High Standards.</h2>
+
+    <div class="drop" data-reveal>
+      <span class="status">First Drop Loading&hellip;</span>
+      <h2 class="display">Mad Mike<br>Clean Sheets</h2>
+      <p class="lede">Crisp. Heavy. Sleeps like money. The first MAD MIKE product is loading — the waitlist gets first access and the launch price, before it goes public.</p>
+
+      <!--
+        WAITLIST FORM — INTERIM (no backend):
+        Submitting opens the visitor's email app with a prefilled message to
+        mike@madme.org (subject "Clean Sheets waitlist", their address in the body).
+        REAL ENDPOINT GOES HERE: when a form backend exists (Squarespace form block,
+        Shopify, or another provider), replace the <form> + the mailto handler in the
+        page script with a POST to that endpoint and delete the mailto fallback.
+      -->
+      <form id="waitlist-form" novalidate>
+        <input type="email" id="waitlist-email" name="email" placeholder="your@email.com" autocomplete="email" required>
+        <button class="btn btn-gold" type="submit">Join the Waitlist</button>
+      </form>
+      <p class="sent" id="waitlist-sent">You&rsquo;re in. Your email app should open — just hit send. 👊</p>
+      <p class="fineprint">One email when the drop lands. No spam, no list-selling, ever.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ================= THE ROOF ================= -->
+  <section id="roof">
+    <p class="kicker" data-reveal>One Roof</p>
+    <h2 class="display sec" data-reveal>Every Account.<br>Same Order.</h2>
+    <p class="lede" data-reveal>Everything MAD MIKE lives under one roof — madme.org — and every account lines up in the same order, everywhere. A missing slot is just loading, never renumbered.</p>
+
+    <div class="roof-grid">
+      <a class="roof-card" data-reveal href="https://www.youtube.com/channel/UCl8RS4qi9qhTy9_v6O3Sxuw" target="_blank" rel="noopener">
+        <span class="slot">Slot 02 &middot; Video Home</span>
+        <h3>YouTube <b>M_I_MAD</b></h3>
+        <p>The flagship channel. @Made_by_madmike — series, drops and the standard.</p>
+        <span class="go">Watch now &rarr;</span>
+      </a>
+      <a class="roof-card" data-reveal href="https://www.instagram.com/bytebymike" target="_blank" rel="noopener">
+        <span class="slot">Slot 03 &middot; Daily Reels</span>
+        <h3>Instagram <b>@bytebymike</b></h3>
+        <p>Reels, carousels and the everyday build — where the character lives daily.</p>
+        <span class="go">Follow &rarr;</span>
+      </a>
+      <div class="roof-card loading" data-reveal aria-label="Facebook page — loading">
+        <span class="slot">Slot 04 &middot; Community</span>
+        <h3>Facebook <b>Page</b></h3>
+        <p>The MAD MIKE Page joins the roof next — same portrait, same order.</p>
+        <span class="chip">Loading&hellip;</span>
+      </div>
+      <div class="roof-card loading" data-reveal aria-label="X account — loading">
+        <span class="slot">Slot 06 &middot; The Talk</span>
+        <h3>X <b>@RUMAD</b></h3>
+        <p>First handle in line when X opens: R U MAD? — the question is the brand.</p>
+        <span class="chip">Loading&hellip;</span>
+      </div>
+      <div class="roof-card loading" data-reveal aria-label="TikTok account — loading">
+        <span class="slot">Slot 07 &middot; Short-Form Mirror</span>
+        <h3>TikTok <b>@RUMAD</b></h3>
+        <p>The reel pipeline, mirrored. Same drafts, same face, new streets.</p>
+        <span class="chip">Loading&hellip;</span>
+      </div>
+      <a class="roof-card" data-reveal href="mailto:mike@madme.org">
+        <span class="slot">Slot 01 &middot; The Root</span>
+        <h3>madme.org <b>mike@madme.org</b></h3>
+        <p>Domain + business inbox. Every account registers, recovers and points back here.</p>
+        <span class="go">Say hello &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p class="f-brand">M_I_<span>MAD</span></p>
+    <p>&copy; 2026 MAD MIKE &middot; madme.org &middot; Business: <a href="mailto:mike@madme.org">mike@madme.org</a></p>
+    <p>Built atom by atom. R U MAD?</p>
+  </footer>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  'use strict';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- ticker: duplicate content for a seamless loop ---------- */
+  var track = document.getElementById('tickerTrack');
+  if (track) { track.innerHTML += track.innerHTML; }
+
+  /* ---------- R U MAD? mad-o-meter ---------- */
+  var madBtn = document.getElementById('madBtn');
+  var madLevel = document.getElementById('madLevel');
+  var avatarCard = document.getElementById('avatarCard');
+  var taps = 0;
+  var stages = [
+    'certified calm 😌', 'mildly mad 😏', 'proper mad 😤',
+    'M_I_MAD level 🔥', 'FULL MAD MIKE MODE 👑💰'
+  ];
+  function burstSparks() {
+    if (reduceMotion || !avatarCard) { return; }
+    var stage = avatarCard.parentElement;
+    for (var i = 0; i < 14; i++) {
+      var s = document.createElement('span');
+      var size = 5 + Math.random() * 7;
+      s.style.cssText = 'position:absolute;left:50%;top:38%;width:' + size + 'px;height:' + size +
+        'px;border-radius:50%;background:' + (Math.random() > 0.4 ? '#f0d98c' : '#d4af37') +
+        ';z-index:4;pointer-events:none;';
+      stage.appendChild(s);
+      var ang = Math.random() * Math.PI * 2;
+      var dist = 110 + Math.random() * 150;
+      s.animate([
+        { transform: 'translate(0,0) scale(1)', opacity: 1 },
+        { transform: 'translate(' + Math.cos(ang) * dist + 'px,' + Math.sin(ang) * dist + 'px) scale(.3)', opacity: 0 }
+      ], { duration: 620 + Math.random() * 380, easing: 'cubic-bezier(.17,.67,.35,1)' })
+      .onfinish = (function (el) { return function () { el.remove(); }; })(s);
+    }
+  }
+  if (madBtn && madLevel) {
+    madBtn.addEventListener('click', function () {
+      taps++;
+      var idx = Math.min(taps, stages.length - 1);
+      madLevel.innerHTML = 'Mad-o-meter: <b>' + stages[idx] + '</b>' + (taps > 1 ? ' &middot; ' + taps + ' taps' : '');
+      if (window.gsap && !reduceMotion && avatarCard) {
+        window.gsap.fromTo(avatarCard, { scale: 1 }, { scale: 1.045, duration: 0.12, yoyo: true, repeat: 1, ease: 'power2.out' });
+      }
+      if (taps === 3 || taps >= 5) { burstSparks(); }
+    });
+  }
+
+  /* ---------- hover tilt (cards + avatar) ---------- */
+  function addTilt(el, maxDeg) {
+    if (!el || reduceMotion || !window.matchMedia('(pointer: fine)').matches) { return; }
+    el.addEventListener('pointermove', function (e) {
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = 'perspective(800px) rotateY(' + (x * maxDeg) + 'deg) rotateX(' + (-y * maxDeg) + 'deg)';
+    });
+    el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+  }
+  document.querySelectorAll('[data-tilt]').forEach(function (el) { addTilt(el, 7); });
+  addTilt(avatarCard, 9);
+
+  /* ---------- waitlist (interim mailto — see form comment in HTML) ---------- */
+  var form = document.getElementById('waitlist-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var input = document.getElementById('waitlist-email');
+      var email = input.value.trim();
+      if (!email || email.indexOf('@') === -1) { input.focus(); return; }
+      var subject = 'Clean Sheets waitlist';
+      var body = 'Add me to the MAD MIKE Clean Sheets waitlist.\n\nMy email: ' + email + '\n\n— sent from madme.org';
+      window.location.href = 'mailto:mike@madme.org?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      document.getElementById('waitlist-sent').style.display = 'block';
+    });
+  }
+
+  /* ---------- GSAP reveals + counters (graceful if CDN fails) ---------- */
+  var countersDone = false;
+  function runCounters() {
+    if (countersDone) { return; }
+    countersDone = true;
+    document.querySelectorAll('[data-count]').forEach(function (el) {
+      var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+      if (reduceMotion || !window.gsap) { el.textContent = target; return; }
+      var obj = { v: 0 };
+      window.gsap.to(obj, {
+        v: target, duration: 1.6, ease: 'power2.out',
+        onUpdate: function () { el.textContent = Math.round(obj.v); },
+        onComplete: function () { el.textContent = target; }
+      });
+    });
+  }
+  if (window.gsap && window.ScrollTrigger && !reduceMotion) {
+    document.documentElement.classList.add('js-anim');
+    window.gsap.registerPlugin(window.ScrollTrigger);
+    window.gsap.utils.toArray('[data-reveal]').forEach(function (el, i) {
+      window.gsap.fromTo(el, { opacity: 0, y: 34 }, {
+        opacity: 1, y: 0, duration: 0.85, ease: 'power3.out', delay: (i % 3) * 0.07,
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      });
+    });
+    window.ScrollTrigger.create({ trigger: '.stats', start: 'top 85%', once: true, onEnter: runCounters });
+    window.gsap.to('.burst-1', { y: -9, rotation: -4, duration: 2.1, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+    window.gsap.to('.burst-2', { y: 8, rotation: 3, duration: 2.5, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+  } else {
+    runCounters();
+  }
+
+  /* ---------- Three.js hero: golden atoms forming around the avatar ---------- */
+  (function initAtoms() {
+    var canvas = document.getElementById('gl');
+    if (!canvas || !window.THREE || reduceMotion) { return; }
+    var hero = document.getElementById('hero');
+    var renderer;
+    try {
+      renderer = new window.THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    } catch (e) { return; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+    var scene = new window.THREE.Scene();
+    var camera = new window.THREE.PerspectiveCamera(55, 1, 0.1, 100);
+    camera.position.z = 8;
+
+    /* soft round sprite so points look like glowing atoms, not squares */
+    function makeSprite() {
+      var c = document.createElement('canvas');
+      c.width = c.height = 64;
+      var g = c.getContext('2d');
+      var grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+      grad.addColorStop(0, 'rgba(255,240,190,1)');
+      grad.addColorStop(0.35, 'rgba(240,217,140,.85)');
+      grad.addColorStop(1, 'rgba(212,175,55,0)');
+      g.fillStyle = grad;
+      g.fillRect(0, 0, 64, 64);
+      return new window.THREE.CanvasTexture(c);
+    }
+    var sprite = makeSprite();
+
+    /* atom cloud: points scattered through a flattened torus shell + halo */
+    var COUNT = 900;
+    var pos = new Float32Array(COUNT * 3);
+    var seed = new Float32Array(COUNT * 2);
+    var i, r, a;
+    for (i = 0; i < COUNT; i++) {
+      r = 2.5 + Math.random() * 3.4;
+      a = Math.random() * Math.PI * 2;
+      pos[i * 3] = Math.cos(a) * r;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 3.4;
+      pos[i * 3 + 2] = Math.sin(a) * r * 0.6 - Math.random() * 1.5;
+      seed[i * 2] = Math.random() * Math.PI * 2;
+      seed[i * 2 + 1] = 0.4 + Math.random() * 1.1;
+    }
+    var geo = new window.THREE.BufferGeometry();
+    geo.setAttribute('position', new window.THREE.BufferAttribute(pos, 3));
+    var mat = new window.THREE.PointsMaterial({
+      size: 0.14, map: sprite, transparent: true, depthWrite: false,
+      blending: window.THREE.AdditiveBlending, color: 0xf0d98c, opacity: 0.9
+    });
+    var cloud = new window.THREE.Points(geo, mat);
+    cloud.position.y = 0.55;
+    scene.add(cloud);
+
+    /* three orbit rings — atoms made literal */
+    var ringMat = new window.THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.4 });
+    var rings = [];
+    [[3.1, 0.5, 0.2], [3.5, -0.35, 0.9], [3.9, 0.15, -0.6]].forEach(function (cfg) {
+      var ring = new window.THREE.Mesh(new window.THREE.TorusGeometry(cfg[0], 0.012, 8, 180), ringMat);
+      ring.rotation.set(cfg[1] + Math.PI / 2.4, cfg[2], 0);
+      ring.position.y = 0.55;
+      rings.push(ring);
+      scene.add(ring);
+    });
+
+    /* glowing nucleus core behind the avatar */
+    var core = new window.THREE.Mesh(
+      new window.THREE.SphereGeometry(1.55, 32, 32),
+      new window.THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.07 })
+    );
+    core.position.y = 0.55;
+    scene.add(core);
+
+    var mx = 0, my = 0;
+    window.addEventListener('pointermove', function (e) {
+      mx = (e.clientX / window.innerWidth - 0.5) * 2;
+      my = (e.clientY / window.innerHeight - 0.5) * 2;
+    }, { passive: true });
+
+    function resize() {
+      var w = hero.clientWidth, h = hero.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var running = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) { running = entries[0].isIntersecting; }, { threshold: 0.02 }).observe(hero);
+    }
+    var clock = new window.THREE.Clock();
+    (function tick() {
+      requestAnimationFrame(tick);
+      if (!running) { return; }
+      var t = clock.getElapsedTime();
+      var arr = geo.attributes.position.array;
+      for (var j = 0; j < COUNT; j++) {
+        arr[j * 3 + 1] += Math.sin(t * seed[j * 2 + 1] + seed[j * 2]) * 0.0016;
+      }
+      geo.attributes.position.needsUpdate = true;
+      cloud.rotation.y = t * 0.07;
+      rings.forEach(function (ring, k) { ring.rotation.z = t * (0.1 + k * 0.045); });
+      core.scale.setScalar(1 + Math.sin(t * 1.4) * 0.045);
+      camera.position.x += (mx * 0.7 - camera.position.x) * 0.04;
+      camera.position.y += (-my * 0.45 - camera.position.y) * 0.04;
+      camera.lookAt(0, 0.3, 0);
+      renderer.render(scene, camera);
+    })();
+  })();
+})();
+</script>
+</body>
+</html>
