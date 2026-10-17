@@ -751,5 +751,90 @@
   })();
 })();
 </script>
+<!-- MAD MIKE info assistant — build #147. Rule-based knowledge today (no key needed);
+     key socket: set window.MADME_AI_KEY (Gemini) later and answers upgrade to live AI.
+     Never invents: anything outside its knowledge goes to the contact fallback. -->
+<style>
+  #mmBtn{position:fixed;right:18px;bottom:18px;z-index:9999;background:#f7c948;color:#141824;
+    border:none;border-radius:999px;padding:13px 20px;font:700 15px Verdana,sans-serif;cursor:pointer;
+    box-shadow:0 6px 24px rgba(0,0,0,.45)}
+  #mmPanel{position:fixed;right:18px;bottom:78px;z-index:9999;width:min(92vw,360px);max-height:70vh;
+    display:none;flex-direction:column;background:#1d2438;color:#f5f0e6;border:2px solid #f7c948;
+    border-radius:16px;overflow:hidden;font:14px/1.5 Verdana,sans-serif;box-shadow:0 10px 34px rgba(0,0,0,.5)}
+  #mmPanel.open{display:flex}
+  #mmHead{background:#f7c948;color:#141824;font-weight:700;padding:10px 14px;font-size:15px}
+  #mmHead small{display:block;font-weight:400;font-size:11px}
+  #mmLog{padding:12px;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
+  .mmMsg{padding:8px 11px;border-radius:12px;max-width:92%}
+  .mmBot{background:#232c47;align-self:flex-start}
+  .mmUser{background:#f7c948;color:#141824;align-self:flex-end}
+  #mmChips{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 10px}
+  .mmChip{background:#232c47;color:#f7c948;border:1px solid #f7c948;border-radius:999px;
+    padding:5px 11px;font-size:12px;cursor:pointer}
+  #mmRow{display:flex;border-top:1px solid #39466b}
+  #mmIn{flex:1;background:#141824;color:#f5f0e6;border:none;padding:11px;font:14px Verdana,sans-serif}
+  #mmSend{background:#f7c948;color:#141824;border:none;padding:0 16px;font-weight:700;cursor:pointer}
+</style>
+<button id="mmBtn" type="button">💬 Ask MAD MIKE</button>
+<div id="mmPanel" role="dialog" aria-label="MAD MIKE info assistant">
+  <div id="mmHead">MAD MIKE — Info Assistant<small>Quick answers about Mike, his work and his services. For anything else: mike@madme.org</small></div>
+  <div id="mmLog"></div>
+  <div id="mmChips"></div>
+  <div id="mmRow"><input id="mmIn" type="text" placeholder="Type your question…" autocomplete="off"><button id="mmSend" type="button">Send</button></div>
+</div>
+<script>
+(function(){
+  var KB = [
+    { k:['who','mike','mohit','about','bio'], a:"Mohit “Mike” Grewal — MBA (AI & ML) candidate at University Canada West, Surrey, BC. He builds AI systems under the name MAD MIKE: automation, AI agents and content systems. Brand line: “Built atom by atom.”" },
+    { k:['service','offer','business','hire','price','cost','audit','never-miss','never miss'], a:"His business offer is MAD MIKE Never-Miss Systems for home-service businesses: AI lead-capture and follow-up that answers every enquiry, even after hours. Starting points: Website & lead audit $149 · Setup $1,500–$3,500 · Care retainer $297–$497/month. Email mike@madme.org for a quote for your business." },
+    { k:['wolf','academy','cartoon','youtube','channel','m_i_mad','mimad'], a:"Wolf Academy is his cartoon teaching show on the M_I_MAD YouTube channel: Professor Wolf teaches a class of animal students the day's real gold & dollar news — the mechanism, never trading advice. The rule on the show: “Don't trust a wolf. Check the chart.”" },
+    { k:['goldwire','gold news','metals'], a:"GOLDWIRE is his faceless metals news desk — gold, silver and the dollar, summarized in plain words from verified sources. News and explanation only, never buy/sell advice." },
+    { k:['portfolio','proof','work','project','sql','dashboard','skills'], a:"Proof of work lives on the Portfolio page of this site: a SQL project with a BI dashboard, a live trading-dashboard build, and the systems listed there. Use the Portfolio chip below to jump to it." },
+    { k:['contact','email','reach','talk'], a:"Email is the front door: mike@madme.org. He reads everything himself and replies personally." },
+    { k:['trading','bot','gold','xau','invest'], a:"Mike builds and studies gold (XAUUSD) trading systems, and teaches the mechanisms in public. He does not give trading or investment advice — his content is education only." },
+    { k:['dash','diva','couple','instagram'], a:"Dash & Diva is his entertainment universe on Instagram — a fictional AI couple with a continuing story across three accounts. Entertainment only, no advice." }
+  ];
+  var FALLBACK = "That one is beyond my card — I only answer from what Mike has published here. Ask me about Mike, his services, Wolf Academy, GOLDWIRE, or his portfolio. Or email him directly: mike@madme.org";
+  var log = document.getElementById('mmLog'), chips = document.getElementById('mmChips'),
+      inp = document.getElementById('mmIn'), panel = document.getElementById('mmPanel');
+  function add(text, cls){
+    var d = document.createElement('div'); d.className = 'mmMsg ' + cls; d.textContent = text;
+    log.appendChild(d); log.scrollTop = log.scrollHeight;
+  }
+  function answer(q){
+    var s = ' ' + q.toLowerCase() + ' ', best = null, bestScore = 0;
+    KB.forEach(function(e){
+      var sc = 0;
+      e.k.forEach(function(w){ if(s.indexOf(w) > -1) sc += w.length > 4 ? 2 : 1; });
+      if(sc > bestScore){ bestScore = sc; best = e; }
+    });
+    return bestScore > 0 ? best.a : FALLBACK;
+  }
+  function ask(q){
+    if(!q.trim()) return;
+    add(q, 'mmUser'); inp.value = '';
+    setTimeout(function(){ add(answer(q), 'mmBot'); }, 250);
+  }
+  [['Who is Mike?','who is mike'],['Services & prices','services and prices'],
+   ['Wolf Academy','wolf academy'],['GOLDWIRE','goldwire'],['Contact','contact']]
+   .forEach(function(c){
+     var b = document.createElement('button'); b.className = 'mmChip'; b.type = 'button'; b.textContent = c[0];
+     b.addEventListener('click', function(){ ask(c[1]); }); chips.appendChild(b);
+   });
+  var here = location.pathname.indexOf('portfolio') > -1;
+  var nav = document.createElement('button'); nav.className = 'mmChip'; nav.type = 'button';
+  nav.textContent = here ? '← Home' : 'Portfolio →';
+  nav.addEventListener('click', function(){ location.href = here ? 'index.html' : 'portfolio.html'; });
+  chips.appendChild(nav);
+  document.getElementById('mmBtn').addEventListener('click', function(){
+    panel.classList.toggle('open');
+    if(panel.classList.contains('open') && !log.children.length)
+      add("Sat Sri Akal — I'm the MAD MIKE info assistant. Ask me about Mike, his services, or his shows. Tap a chip or type below.", 'mmBot');
+  });
+  document.getElementById('mmSend').addEventListener('click', function(){ ask(inp.value); });
+  inp.addEventListener('keydown', function(e){ if(e.key === 'Enter') ask(inp.value); });
+})();
+</script>
+
 </body>
 </html>

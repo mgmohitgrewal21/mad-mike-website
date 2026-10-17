@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohit "Mike" Grewal — MBA (AI & ML) | madme.org</title>
+<meta name="description" content="Mohit Grewal — MBA candidate in AI & ML Leadership at University Canada West. Builder of multi-agent AI systems, algorithmic trading bots, and automation. Surrey, BC, Canada.">
+<meta property="og:title" content="Mohit Grewal — MBA (AI & ML Leadership)">
+<meta property="og:description" content="Business leader in AI who also builds: multi-agent systems, trading bots, security layers, automation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://madme.org/portfolio.html">
+<style>
+  :root{
+    --bg:#07090d; --panel:#0d1117; --panel2:#11161f; --line:#1e2634;
+    --text:#e8edf4; --muted:#94a3b8; --gold:#f5b942; --gold2:#ffcf6b;
+    --accent:#38bdf8; --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  header{position:sticky;top:0;background:rgba(7,9,13,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .brand{font-weight:800;letter-spacing:.06em;font-size:18px;color:var(--text)}
+  .brand span{color:var(--gold)}
+  .nav nav a{color:var(--muted);margin-left:18px;font-size:14px}
+  .nav nav a:hover{color:var(--gold);text-decoration:none}
+  .hero{padding:84px 0 64px;background:radial-gradient(900px 480px at 15% -10%,rgba(245,185,66,.14),transparent 60%),radial-gradient(700px 420px at 90% 0%,rgba(56,189,248,.10),transparent 55%)}
+  .kicker{color:var(--gold);font-weight:700;letter-spacing:.22em;font-size:12px;text-transform:uppercase}
+  h1{font-size:clamp(34px,6vw,58px);line-height:1.08;margin:14px 0 8px}
+  h1 .thin{color:var(--muted);font-weight:300}
+  .hero .qual{font-size:clamp(17px,2.6vw,22px);color:var(--gold2);font-weight:600;margin-bottom:14px}
+  .hero p.lede{color:var(--muted);max-width:680px;font-size:17px}
+  .cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 22px;border-radius:10px;font-weight:700;font-size:15px;border:1px solid var(--line)}
+  .btn.gold{background:var(--gold);color:#151005;border-color:var(--gold)}
+  .btn.gold:hover{background:var(--gold2);text-decoration:none}
+  .btn.ghost{color:var(--text);background:transparent}
+  .btn.ghost:hover{border-color:var(--gold);color:var(--gold);text-decoration:none}
+  .stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;min-width:150px}
+  .stat b{display:block;font-size:22px;color:var(--gold)}
+  .stat small{color:var(--muted);font-size:12.5px;letter-spacing:.04em}
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  h2{font-size:28px;margin-bottom:6px}
+  h2 .bar{color:var(--gold)}
+  .sub{color:var(--muted);margin-bottom:28px;max-width:720px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .card h3{font-size:18px;margin-bottom:6px;color:var(--text)}
+  .card h3 .tag{float:right;font-size:11px;color:#151005;background:var(--gold);border-radius:20px;padding:2px 10px;font-weight:800;letter-spacing:.05em}
+  .card p{color:var(--muted);font-size:14.5px}
+  .chips{margin-top:12px}
+  .chip{display:inline-block;border:1px solid var(--line);background:var(--panel2);color:var(--muted);border-radius:20px;padding:3px 11px;font-size:12.5px;margin:0 6px 6px 0}
+  .tl{border-left:2px solid var(--line);margin-left:6px;padding-left:24px}
+  .tl .item{position:relative;padding-bottom:26px}
+  .tl .item::before{content:"";position:absolute;left:-31px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
+  .tl h3{font-size:17px}
+  .tl .when{color:var(--gold);font-size:13px;font-weight:700;letter-spacing:.05em}
+  .tl p{color:var(--muted);font-size:14.5px;max-width:760px}
+  .skillrow{display:flex;flex-wrap:wrap;gap:8px}
+  .skill{border:1px solid var(--line);background:var(--panel);padding:8px 14px;border-radius:10px;font-size:14px}
+  .skill b{color:var(--gold)}
+  .socials{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .soc{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:block}
+  .soc:hover{border-color:var(--gold);text-decoration:none}
+  .soc .name{font-weight:800;font-size:17px;color:var(--text)}
+  .soc .handle{color:var(--muted);font-size:14px}
+  .soc .go{color:var(--gold);font-size:13px;font-weight:700;margin-top:8px;display:block}
+  .contact{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;text-align:center}
+  .contact .mail{font-size:clamp(19px,3.4vw,26px);font-weight:800;color:var(--gold)}
+  footer{padding:34px 0 44px;color:var(--muted);font-size:13.5px;text-align:center;border-top:1px solid var(--line)}
+  @media (max-width:560px){.nav nav{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">MAD<span>ME</span>.ORG</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#systems">Systems</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#proof">Proof of Work</a>
+      <a href="#connect">Connect</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Portfolio — Surrey, BC, Canada</div>
+    <h1>Mohit "Mike" Grewal<br><span class="thin">Building things, atom by atom.</span></h1>
+    <div class="qual">MBA — AI &amp; ML Leadership · University Canada West</div>
+    <p class="lede">Business leader in artificial intelligence who also builds. I design and operate multi-agent AI systems — trading bots, study systems, security layers and automation — end to end: strategy, code, supervision, governance.</p>
+    <div class="cta">
+      <a class="btn gold" href="#systems">See the systems</a>
+      <a class="btn ghost" href="#connect">Connect with me</a>
+      <a class="btn ghost" href="mailto:mike@madme.org">mike@madme.org</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>145+</b><small>NUMBERED BUILDS SHIPPED</small></div>
+      <div class="stat"><b>250+</b><small>AI AGENTS DESIGNED &amp; RUN</small></div>
+      <div class="stat"><b>3</b><small>TRADING BOTS UNDER SUPERVISION</small></div>
+      <div class="stat"><b>1</b><small>OPERATOR — EVERY SYSTEM ANSWERS TO ME</small></div>
+    </div>
+  </div>
+</div>
+
+<section id="systems">
+  <div class="wrap">
+    <h2><span class="bar">/</span> The Systems</h2>
+    <p class="sub">Not demos — working systems, designed, built and operated by me, each with a job, a supervisor, and an audit trail.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>ByteMe — Live OS <span class="tag">FLAGSHIP</span></h3>
+        <p>A personal multi-agent operating system: a companion agent orchestrating specialist departments — personal, knowledge, creative, education, business &amp; finance, health, home &amp; devices — behind a Guardian permission layer with one-shot approvals and full memory.</p>
+        <div class="chips"><span class="chip">Multi-agent architecture</span><span class="chip">Permissions &amp; governance</span><span class="chip">Persistent memory</span></div>
+      </div>
+      <div class="card">
+        <h3>Algorithmic Trading Fleet</h3>
+        <p>Three supervised XAU/USD trading bots (research, practice, live) with a confluence strategy engine, news vetoes, risk rails — daily halt and drawdown kill-switch — watchdog supervision, and a 7-agent consensus mesh that cross-audits every market call, including a clone-divergence check.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">OANDA API</span><span class="chip">Risk systems</span></div>
+      </div>
+      <div class="card">
+        <h3>School OS</h3>
+        <p>A 15-agent tutor system for my MBA: deadline radar, instructor-input-first drafting, and verified submission tracking across three concurrent courses.</p>
+        <div class="chips"><span class="chip">Agent workflows</span><span class="chip">Education tech</span></div>
+      </div>
+      <div class="card">
+        <h3>Evolution Engine</h3>
+        <p>A 60-agent idea-generation system with a 10-judge senate, grow-only API, lineage tracking and generational prompt evolution — an R&amp;D lab for agent design.</p>
+        <div class="chips"><span class="chip">Agent design</span><span class="chip">Evaluation systems</span></div>
+      </div>
+      <div class="card">
+        <h3>Sentinel — Security Layer</h3>
+        <p>An egress-controlled security layer for my systems: allow-listed gateway, append-only audit log, Tor-routed privacy path, and threat-intel integrations.</p>
+        <div class="chips"><span class="chip">Security engineering</span><span class="chip">Privacy</span></div>
+      </div>
+      <div class="card">
+        <h3>Wolf Academy</h3>
+        <p>An animated teaching show that explains trending US dollar &amp; gold news as cartoon lessons — news plus mechanism, taught simply. Content pipeline run by a specialist creator-agent fleet.</p>
+        <div class="chips"><span class="chip">Content systems</span><span class="chip">YouTube</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2><span class="bar">/</span> Experience &amp; Education</h2>
+    <p class="sub">Management first, technology always — a business operator's path into AI leadership.</p>
+    <div class="tl">
+      <div class="item">
+        <div class="when">2025 — 2027 · HIGHEST QUALIFICATION</div>
+        <h3>MBA — AI &amp; ML Leadership, University Canada West (Vancouver, BC)</h3>
+        <p>Graduate specialisation in artificial intelligence and machine-learning leadership: responsible AI, project management, and leadership — studied while building production AI systems outside the classroom.</p>
+      </div>
+      <div class="item">
+        <div class="when">2023 — 2024</div>
+        <h3>Business Management Executive</h3>
+        <p>Business operations and management — clients, delivery, and day-to-day leadership.</p>
+      </div>
+      <div class="item">
+        <div class="when">FOUNDER</div>
+        <h3>Atom Designs — Interior Design Business</h3>
+        <p>Founded and ran an interior-design business with a small team: client acquisition, project delivery, social media, website, dashboards and lead generation.</p>
+      </div>
+      <div class="item">
+        <div class="when">CANADA</div>
+        <h3>Operations &amp; Production Roles — BC</h3>
+        <p>Warehouse and production operations, hospitality, and removal services across the Lower Mainland — the ground-level operations experience behind my automation thinking.</p>
+      </div>
+      <div class="item">
+        <div class="when">2021</div>
+        <h3>BSc — Physical Science with Computer Science, University of Delhi</h3>
+        <p>The scientific and computing foundation under everything above.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2><span class="bar">/</span> Skills — shown, not claimed</h2>
+    <p class="sub">Every skill below is at working level, and each one carries its proof: a live system, a project folder, or a public dashboard. Click through and inspect the work itself.</p>
+    <div class="skillrow">
+      <span class="skill"><b>AI —</b> Multi-agent systems</span>
+      <span class="skill"><b>AI —</b> LLM workflows &amp; prompt systems</span>
+      <span class="skill"><b>AI —</b> Automation (n8n, APIs)</span>
+      <span class="skill"><b>Code —</b> Python</span>
+      <span class="skill"><b>Code —</b> JavaScript / Node.js</span>
+      <span class="skill"><b>Code —</b> Playwright</span>
+      <span class="skill"><b>Data —</b> SQL (analytics queries &amp; schema design)</span>
+      <span class="skill"><b>Data —</b> Power BI (dashboard design &amp; KPIs)</span>
+      <span class="skill"><b>Platform —</b> Docker</span>
+      <span class="skill"><b>Platform —</b> GitHub</span>
+      <span class="skill"><b>Platform —</b> Microsoft Azure</span>
+      <span class="skill"><b>Business —</b> Operations &amp; team leadership</span>
+      <span class="skill"><b>Business —</b> Dashboards &amp; reporting</span>
+      <span class="skill"><b>Business —</b> Project coordination</span>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="wrap">
+    <h2><span class="bar">/</span> Proof of Work</h2>
+    <p class="sub">Open the folders. Read the queries. Poke the dashboards. This is the work, public — the same standard I would want from anyone I hire.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>BI Dashboard — Trading Analytics <span class="tag">POWER BI STYLE</span></h3>
+        <p>A public demo dashboard in the Power BI design language: KPI cards, equity curve, win-rate by session, and risk gauges — built over a clearly labelled sample dataset from my trading journal schema.</p>
+        <div class="chips"><span class="chip">Power BI design</span><span class="chip">Data modelling</span><span class="chip">KPI design</span></div>
+        <p style="margin-top:12px"><a href="proof/trading-dashboard.html"><b>Open the dashboard →</b></a></p>
+      </div>
+      <div class="card">
+        <h3>SQL Analytics Project <span class="tag">SQL</span></h3>
+        <p>A complete, runnable SQL project: schema for a trading journal (trades, signals, risk events) plus ten commented analytics queries — performance by strategy, drawdown windows, session analysis, risk-rail audits.</p>
+        <div class="chips"><span class="chip">Schema design</span><span class="chip">Window functions</span><span class="chip">CTEs &amp; joins</span></div>
+        <p style="margin-top:12px"><a href="proof/sql.html"><b>Read the project →</b></a></p>
+      </div>
+      <div class="card">
+        <h3>The Systems — Live Folders</h3>
+        <p>The six production systems above — ByteMe Live OS, the trading fleet, School OS, Evolution Engine, Sentinel, Wolf Academy — are documented in the Systems section, each with its architecture and governance described on the record.</p>
+        <div class="chips"><span class="chip">Architecture</span><span class="chip">Documentation</span></div>
+        <p style="margin-top:12px"><a href="#systems"><b>Back to the systems →</b></a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="connect">
+  <div class="wrap">
+    <h2><span class="bar">/</span> Connect</h2>
+    <p class="sub">Every door, one hallway — my work and channels, managed from here.</p>
+    <div class="socials">
+      <a class="soc" href="https://www.youtube.com/channel/UCl8RS4qi9qhTy9_v6O3Sxuw" target="_blank" rel="noopener">
+        <div class="name">YouTube</div>
+        <div class="handle">M_I_MAD · @Made_by_madmike</div>
+        <span class="go">Watch →</span>
+      </a>
+      <a class="soc" href="https://www.instagram.com/bytebymike" target="_blank" rel="noopener">
+        <div class="name">Instagram</div>
+        <div class="handle">@bytebymike</div>
+        <span class="go">Follow →</span>
+      </a>
+      <a class="soc" href="https://www.facebook.com/1192675613926446" target="_blank" rel="noopener">
+        <div class="name">Facebook</div>
+        <div class="handle">Byte By Mike — Page</div>
+        <span class="go">Visit →</span>
+      </a>
+      <a class="soc" href="#contact">
+        <div class="name">LinkedIn</div>
+        <div class="handle">Mohit Grewal — link being wired in</div>
+        <span class="go">Ask me directly →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div class="kicker">Open to AI / ML opportunities</div>
+      <p style="color:var(--muted);margin:10px 0 14px">AI bot &amp; agent development, AI product and program roles, automation and business-technology positions — internships, part-time during term, and full-time after graduation.</p>
+      <a class="mail" href="mailto:mike@madme.org">mike@madme.org</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Mohit Grewal · madme.org · Built atom by atom in Surrey, BC.</div>
+</footer>
+
+<!-- MAD MIKE info assistant — build #147. Rule-based knowledge today (no key needed);
+     key socket: set window.MADME_AI_KEY (Gemini) later and answers upgrade to live AI.
+     Never invents: anything outside its knowledge goes to the contact fallback. -->
+<style>
+  #mmBtn{position:fixed;right:18px;bottom:18px;z-index:9999;background:#f7c948;color:#141824;
+    border:none;border-radius:999px;padding:13px 20px;font:700 15px Verdana,sans-serif;cursor:pointer;
+    box-shadow:0 6px 24px rgba(0,0,0,.45)}
+  #mmPanel{position:fixed;right:18px;bottom:78px;z-index:9999;width:min(92vw,360px);max-height:70vh;
+    display:none;flex-direction:column;background:#1d2438;color:#f5f0e6;border:2px solid #f7c948;
+    border-radius:16px;overflow:hidden;font:14px/1.5 Verdana,sans-serif;box-shadow:0 10px 34px rgba(0,0,0,.5)}
+  #mmPanel.open{display:flex}
+  #mmHead{background:#f7c948;color:#141824;font-weight:700;padding:10px 14px;font-size:15px}
+  #mmHead small{display:block;font-weight:400;font-size:11px}
+  #mmLog{padding:12px;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
+  .mmMsg{padding:8px 11px;border-radius:12px;max-width:92%}
+  .mmBot{background:#232c47;align-self:flex-start}
+  .mmUser{background:#f7c948;color:#141824;align-self:flex-end}
+  #mmChips{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 10px}
+  .mmChip{background:#232c47;color:#f7c948;border:1px solid #f7c948;border-radius:999px;
+    padding:5px 11px;font-size:12px;cursor:pointer}
+  #mmRow{display:flex;border-top:1px solid #39466b}
+  #mmIn{flex:1;background:#141824;color:#f5f0e6;border:none;padding:11px;font:14px Verdana,sans-serif}
+  #mmSend{background:#f7c948;color:#141824;border:none;padding:0 16px;font-weight:700;cursor:pointer}
+</style>
+<button id="mmBtn" type="button">💬 Ask MAD MIKE</button>
+<div id="mmPanel" role="dialog" aria-label="MAD MIKE info assistant">
+  <div id="mmHead">MAD MIKE — Info Assistant<small>Quick answers about Mike, his work and his services. For anything else: mike@madme.org</small></div>
+  <div id="mmLog"></div>
+  <div id="mmChips"></div>
+  <div id="mmRow"><input id="mmIn" type="text" placeholder="Type your question…" autocomplete="off"><button id="mmSend" type="button">Send</button></div>
+</div>
+<script>
+(function(){
+  var KB = [
+    { k:['who','mike','mohit','about','bio'], a:"Mohit “Mike” Grewal — MBA (AI & ML) candidate at University Canada West, Surrey, BC. He builds AI systems under the name MAD MIKE: automation, AI agents and content systems. Brand line: “Built atom by atom.”" },
+    { k:['service','offer','business','hire','price','cost','audit','never-miss','never miss'], a:"His business offer is MAD MIKE Never-Miss Systems for home-service businesses: AI lead-capture and follow-up that answers every enquiry, even after hours. Starting points: Website & lead audit $149 · Setup $1,500–$3,500 · Care retainer $297–$497/month. Email mike@madme.org for a quote for your business." },
+    { k:['wolf','academy','cartoon','youtube','channel','m_i_mad','mimad'], a:"Wolf Academy is his cartoon teaching show on the M_I_MAD YouTube channel: Professor Wolf teaches a class of animal students the day's real gold & dollar news — the mechanism, never trading advice. The rule on the show: “Don't trust a wolf. Check the chart.”" },
+    { k:['goldwire','gold news','metals'], a:"GOLDWIRE is his faceless metals news desk — gold, silver and the dollar, summarized in plain words from verified sources. News and explanation only, never buy/sell advice." },
+    { k:['portfolio','proof','work','project','sql','dashboard','skills'], a:"Proof of work lives on the Portfolio page of this site: a SQL project with a BI dashboard, a live trading-dashboard build, and the systems listed there. Use the Portfolio chip below to jump to it." },
+    { k:['contact','email','reach','talk'], a:"Email is the front door: mike@madme.org. He reads everything himself and replies personally." },
+    { k:['trading','bot','gold','xau','invest'], a:"Mike builds and studies gold (XAUUSD) trading systems, and teaches the mechanisms in public. He does not give trading or investment advice — his content is education only." },
+    { k:['dash','diva','couple','instagram'], a:"Dash & Diva is his entertainment universe on Instagram — a fictional AI couple with a continuing story across three accounts. Entertainment only, no advice." }
+  ];
+  var FALLBACK = "That one is beyond my card — I only answer from what Mike has published here. Ask me about Mike, his services, Wolf Academy, GOLDWIRE, or his portfolio. Or email him directly: mike@madme.org";
+  var log = document.getElementById('mmLog'), chips = document.getElementById('mmChips'),
+      inp = document.getElementById('mmIn'), panel = document.getElementById('mmPanel');
+  function add(text, cls){
+    var d = document.createElement('div'); d.className = 'mmMsg ' + cls; d.textContent = text;
+    log.appendChild(d); log.scrollTop = log.scrollHeight;
+  }
+  function answer(q){
+    var s = ' ' + q.toLowerCase() + ' ', best = null, bestScore = 0;
+    KB.forEach(function(e){
+      var sc = 0;
+      e.k.forEach(function(w){ if(s.indexOf(w) > -1) sc += w.length > 4 ? 2 : 1; });
+      if(sc > bestScore){ bestScore = sc; best = e; }
+    });
+    return bestScore > 0 ? best.a : FALLBACK;
+  }
+  function ask(q){
+    if(!q.trim()) return;
+    add(q, 'mmUser'); inp.value = '';
+    setTimeout(function(){ add(answer(q), 'mmBot'); }, 250);
+  }
+  [['Who is Mike?','who is mike'],['Services & prices','services and prices'],
+   ['Wolf Academy','wolf academy'],['GOLDWIRE','goldwire'],['Contact','contact']]
+   .forEach(function(c){
+     var b = document.createElement('button'); b.className = 'mmChip'; b.type = 'button'; b.textContent = c[0];
+     b.addEventListener('click', function(){ ask(c[1]); }); chips.appendChild(b);
+   });
+  var here = location.pathname.indexOf('portfolio') > -1;
+  var nav = document.createElement('button'); nav.className = 'mmChip'; nav.type = 'button';
+  nav.textContent = here ? '← Home' : 'Portfolio →';
+  nav.addEventListener('click', function(){ location.href = here ? 'index.html' : 'portfolio.html'; });
+  chips.appendChild(nav);
+  document.getElementById('mmBtn').addEventListener('click', function(){
+    panel.classList.toggle('open');
+    if(panel.classList.contains('open') && !log.children.length)
+      add("Sat Sri Akal — I'm the MAD MIKE info assistant. Ask me about Mike, his services, or his shows. Tap a chip or type below.", 'mmBot');
+  });
+  document.getElementById('mmSend').addEventListener('click', function(){ ask(inp.value); });
+  inp.addEventListener('keydown', function(e){ if(e.key === 'Enter') ask(inp.value); });
+})();
+</script>
+
+</body>
+</html>
