@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL Analytics Project — Trading Journal | Mohit Grewal</title>
+<meta name="description" content="A runnable SQL analytics project by Mohit Grewal: trading-journal schema plus ten commented analytics queries — joins, CTEs, window functions, risk-rail audits.">
+<style>
+  :root{--bg:#07090d;--panel:#0d1117;--panel2:#11161f;--line:#1e2634;--text:#e8edf4;--muted:#94a3b8;--gold:#f5b942;--blue:#38bdf8;--green:#34d399}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,sans-serif;line-height:1.6}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px 48px}
+  header{padding:38px 0 6px}
+  .kicker{color:var(--gold);font-weight:700;letter-spacing:.22em;font-size:12px;text-transform:uppercase}
+  h1{font-size:32px;margin:10px 0 8px}
+  .sub{color:var(--muted);max-width:720px}
+  a{color:var(--blue)}
+  section{padding:30px 0;border-top:1px solid var(--line);margin-top:30px}
+  h2{font-size:21px;margin-bottom:12px}
+  h2 span{color:var(--gold)}
+  .files{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .file{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .file b{font-size:16px}
+  .file p{color:var(--muted);font-size:14px;margin:6px 0 10px}
+  .btn{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:8px;padding:7px 14px;font-weight:700;font-size:13.5px;text-decoration:none}
+  .btn:hover{background:var(--gold);color:#151005}
+  ol.q{margin-left:20px;color:var(--muted);font-size:15px}
+  ol.q li{margin-bottom:8px}
+  ol.q b{color:var(--text)}
+  code{background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:13px;color:var(--gold)}
+  pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;overflow-x:auto;font-size:12.8px;line-height:1.5;color:#c9d4e3}
+  footer{color:var(--muted);font-size:13.5px;padding-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Proof of Work · SQL</div>
+    <h1>SQL Analytics Project — Trading Journal</h1>
+    <p class="sub">Designed &amp; written by <b>Mohit Grewal</b>. The journal behind a supervised trading fleet: every bot decision leaves a row, every risk-rail event leaves a row. The schema and ten analytics queries below are complete and runnable — download them, load sample rows, and run.</p>
+  </header>
+
+  <section>
+    <h2><span>/</span> The files</h2>
+    <div class="files">
+      <div class="file">
+        <b>schema.sql</b>
+        <p>Three tables — <code>trades</code>, <code>signals</code>, <code>risk_events</code> — with keys, checks and indexes. Manual trades are flagged, never mixed into bot statistics.</p>
+        <a class="btn" href="schema.sql" download>Download schema.sql</a>
+      </div>
+      <div class="file">
+        <b>queries.sql</b>
+        <p>Ten commented analytics queries: joins, a CTE + window-function drawdown analysis, a running equity curve, and risk-rail audits.</p>
+        <a class="btn" href="queries.sql" download>Download queries.sql</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span>/</span> The ten questions</h2>
+    <ol class="q">
+      <li><b>Strategy scorecard</b> — trades, win rate, net P&amp;L, average R per strategy.</li>
+      <li><b>Win rate by session</b> — where does the edge actually live?</li>
+      <li><b>Profit factor per bot</b> — gross wins over gross losses.</li>
+      <li><b>Running equity curve</b> — cumulative P&amp;L with a window function.</li>
+      <li><b>Worst drawdown window</b> — peak-to-trough per bot (CTE + window).</li>
+      <li><b>Signal quality</b> — do high-strength signals actually win more?</li>
+      <li><b>Veto audit</b> — what did the vetoes block, and why?</li>
+      <li><b>ADX gate check</b> — win rate above vs below the trend gate.</li>
+      <li><b>Risk-rail audit</b> — every halt and kill event, newest first.</li>
+      <li><b>Daily P&amp;L vs the 2% halt</b> — did any day breach its rails?</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span>/</span> A taste — Q5, worst drawdown</h2>
+    <pre>WITH curve AS (
+    SELECT bot, closed_at,
+           SUM(pnl) OVER (PARTITION BY bot ORDER BY closed_at) AS equity
+    FROM trades
+    WHERE closed_at IS NOT NULL AND is_manual = FALSE
+),
+peaks AS (
+    SELECT bot, closed_at, equity,
+           MAX(equity) OVER (PARTITION BY bot ORDER BY closed_at) AS running_peak
+    FROM curve
+)
+SELECT bot, MIN(equity - running_peak) AS worst_drawdown_amount
+FROM peaks
+GROUP BY bot;</pre>
+  </section>
+
+  <footer>
+    <p>These queries feed the <a href="trading-dashboard.html">BI dashboard</a> — same numbers, presentation layer only changes. · <a href="../portfolio.html">← Back to portfolio</a></p>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Analytics — BI Dashboard (Demo) | Mohit Grewal</title>
+<meta name="description" content="Power BI-style analytics dashboard over a sample trading-journal dataset: KPIs, equity curve, session win-rates, risk gauges. Built by Mohit Grewal.">
+<style>
+  :root{--bg:#0b0e13;--panel:#12161f;--panel2:#171c28;--line:#232b3a;--text:#e8edf4;--muted:#8b98ad;--gold:#f5b942;--green:#34d399;--red:#f87171;--blue:#38bdf8}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,sans-serif;line-height:1.5}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 18px 40px}
+  header{padding:26px 0 8px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px}
+  h1{font-size:24px}
+  h1 span{color:var(--gold)}
+  .demo{background:#3a2c07;border:1px solid var(--gold);color:var(--gold2,#ffcf6b);border-radius:8px;padding:4px 12px;font-size:12.5px;font-weight:700;letter-spacing:.05em}
+  .sub{color:var(--muted);font-size:14px;padding-bottom:16px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:14px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .kpi small{color:var(--muted);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+  .kpi b{display:block;font-size:26px;margin-top:4px}
+  .kpi .d{font-size:12.5px}
+  .up{color:var(--green)} .down{color:var(--red)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .card h3{font-size:15.5px;margin-bottom:4px}
+  .card .note{color:var(--muted);font-size:12.5px;margin-bottom:10px}
+  .bar-row{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:13px}
+  .bar-row .lab{width:86px;color:var(--muted)}
+  .bar-track{flex:1;background:var(--panel2);border-radius:6px;height:16px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:6px;background:var(--gold)}
+  .bar-fill.b{background:var(--blue)} .bar-fill.g{background:var(--green)}
+  .bar-row .val{width:48px;text-align:right;font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left}
+  th{color:var(--muted);font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+  .gauge{height:14px;background:var(--panel2);border-radius:7px;overflow:hidden;margin:6px 0 12px}
+  .gauge>div{height:100%;background:linear-gradient(90deg,var(--green),var(--gold))}
+  footer{color:var(--muted);font-size:13px;padding-top:20px}
+  a{color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Trading Analytics <span>— BI Dashboard</span></h1>
+    <div class="demo">DEMO · SAMPLE DATA</div>
+  </header>
+  <p class="sub">Designed &amp; built by <b>Mohit Grewal</b> in the Power BI design language — KPI cards, equity curve, session performance and risk gauges, modelled on the same schema as the <a href="sql.html">SQL Analytics Project</a>. All figures below are sample data for demonstration; the live system reports the same visuals over real journal data.</p>
+
+  <div class="kpis">
+    <div class="kpi"><small>Net P&amp;L (sample)</small><b>+$1,284</b><div class="d up">▲ 30-day window</div></div>
+    <div class="kpi"><small>Win rate</small><b>57.4%</b><div class="d">148 trades</div></div>
+    <div class="kpi"><small>Profit factor</small><b>1.62</b><div class="d up">healthy &gt; 1.5</div></div>
+    <div class="kpi"><small>Max drawdown</small><b>−6.8%</b><div class="d">kill-switch at −10%</div></div>
+    <div class="kpi"><small>Daily-halt hits</small><b>3</b><div class="d">risk rails working</div></div>
+    <div class="kpi"><small>Avg R multiple</small><b>+0.41R</b><div class="d up">per trade</div></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Equity curve — sample 30 days</h3>
+      <div class="note">Cumulative P&amp;L, indexed. Drawdown window shaded by the risk system.</div>
+      <svg viewBox="0 0 320 150" width="100%" role="img" aria-label="Sample equity curve rising with one dip">
+        <rect x="150" y="20" width="42" height="110" fill="#f87171" opacity="0.13"/>
+        <polyline fill="none" stroke="#f5b942" stroke-width="2.5" points="0,128 30,120 60,124 90,104 120,108 150,88 168,96 192,78 220,80 250,58 280,44 310,26"/>
+        <line x1="0" y1="130" x2="320" y2="130" stroke="#232b3a"/>
+        <text x="158" y="145" fill="#8b98ad" font-size="9">drawdown</text>
+      </svg>
+    </div>
+    <div class="card">
+      <h3>Win rate by session</h3>
+      <div class="note">Where the edge actually lives — the strategy only trades its proven windows.</div>
+      <div class="bar-row"><span class="lab">London</span><div class="bar-track"><div class="bar-fill g" style="width:64%"></div></div><span class="val">64%</span></div>
+      <div class="bar-row"><span class="lab">NY open</span><div class="bar-track"><div class="bar-fill" style="width:59%"></div></div><span class="val">59%</span></div>
+      <div class="bar-row"><span class="lab">Overlap</span><div class="bar-track"><div class="bar-fill b" style="width:55%"></div></div><span class="val">55%</span></div>
+      <div class="bar-row"><span class="lab">Asia</span><div class="bar-track"><div class="bar-fill" style="width:41%;background:#f87171"></div></div><span class="val">41%</span></div>
+    </div>
+    <div class="card">
+      <h3>Risk gauges</h3>
+      <div class="note">Distance to the rails, at a glance. The rails are the product.</div>
+      <div style="font-size:13px">Drawdown vs 10% kill-switch</div>
+      <div class="gauge"><div style="width:68%"></div></div>
+      <div style="font-size:13px">Day loss vs 2% daily halt</div>
+      <div class="gauge"><div style="width:35%"></div></div>
+      <div style="font-size:13px">Open risk vs portfolio cap</div>
+      <div class="gauge"><div style="width:22%"></div></div>
+    </div>
+    <div class="card">
+      <h3>Strategy scorecard</h3>
+      <div class="note">Same numbers the <a href="sql.html">SQL queries</a> produce — presentation layer only changes.</div>
+      <table>
+        <tr><th>Strategy</th><th>Trades</th><th>Win %</th><th>Net</th></tr>
+        <tr><td>Confluence A</td><td>62</td><td>61%</td><td class="up">+$742</td></tr>
+        <tr><td>Confluence B</td><td>48</td><td>56%</td><td class="up">+$391</td></tr>
+        <tr><td>News-veto test</td><td>38</td><td>52%</td><td class="up">+$151</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    <p>Data model: trades · signals · risk_events (see the <a href="sql.html">SQL Analytics Project</a>). A native Power BI (.pbix) build from the same dataset is produced on request. · <a href="../portfolio.html">← Back to portfolio</a></p>
+  </footer>
+</div>
+</body>
+</html>
